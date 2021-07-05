@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:src="@drawable/pic_btn"
+            android:id="@+id/imageBtn"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="9dp"/>
+
+        <ImageView
+            android:src="@drawable/video_btn"
+            android:id="@+id/videoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="9dp"/>
+        <ImageView
+            android:src="@drawable/pdf_document"
+            android:id="@+id/docBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="9dp"/>
+        <ImageView
+            android:src="@drawable/music_btn"
+            android:id="@+id/musicBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="9dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

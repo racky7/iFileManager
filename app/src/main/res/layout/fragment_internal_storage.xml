@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".internal_storage">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        >
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:src="@drawable/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"></ImageView>
+        <Button
+            android:id="@+id/refreshBtn"
+            android:layout_width="0dp"
+            android:text="R"
+            android:textSize="45dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"></Button>
+        <TextView
+            android:id="@+id/path_name"
+            android:text="/storage/emulated/0"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"></TextView>
+
+
+    </LinearLayout>
+    <ListView
+
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+    </ListView>
+
+    </LinearLayout>
+
+</FrameLayout>
