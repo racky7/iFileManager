@@ -17,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/tab_layout"
         android:id="@+id/view_pager2"
-        android:background="@drawable/ic_baseline_folder_24"
+
         />
 
 

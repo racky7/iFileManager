@@ -20,8 +20,8 @@ public class FragmentAdapter extends FragmentStateAdapter {
         {
             case 1 :
                 return new internal_storage();
-            case 2 :
-                return new sd_storage();
+//            case 2 :
+//                return new sd_storage();
         }
 
         return new home();
@@ -30,6 +30,6 @@ public class FragmentAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 }

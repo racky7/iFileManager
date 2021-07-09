@@ -23,33 +23,80 @@
             android:src="@drawable/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"></ImageView>
-        <Button
-            android:id="@+id/refreshBtn"
-            android:layout_width="0dp"
-            android:text="R"
-            android:textSize="45dp"
-            android:layout_height="match_parent"
-            android:visibility="gone"></Button>
+
+
         <TextView
             android:id="@+id/path_name"
             android:text="/storage/emulated/0"
             android:textColor="@color/white"
             android:textSize="15dp"
             android:gravity="center_vertical"
-            android:layout_width="match_parent"
-
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"></TextView>
+        <ImageView
+            android:id="@+id/addFolder"
+            android:src="@drawable/add_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"></ImageView>
+
 
 
     </LinearLayout>
+        <LinearLayout
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <ImageView
+                android:id="@+id/rename"
+                android:src="@drawable/rename_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
+            <ImageView
+                android:id="@+id/deleteBtn"
+                android:src="@drawable/delete_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
+            <ImageView
+                android:id="@+id/copyBtn"
+                android:visibility="gone"
+                android:src="@drawable/copy_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
+            <ImageView
+                android:id="@+id/pasteBtn"
+                android:visibility="gone"
+                android:src="@drawable/paste_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
+            <ImageView
+                android:id="@+id/refreshBtn"
+                android:src="@drawable/refresh_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"/>
+
+
+
+        </LinearLayout>
     <ListView
 
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+
 
         >
     </ListView>
+
+
+
 
     </LinearLayout>
 
