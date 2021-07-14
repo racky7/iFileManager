@@ -7,9 +7,11 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +49,10 @@ public class home extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
+
         imageBtn = v.findViewById(R.id.imageBtn);
         docBtn = v.findViewById(R.id.docBtn);
         musicBtn = v.findViewById(R.id.musicBtn);
@@ -54,9 +60,6 @@ public class home extends Fragment {
 
 
         listView = (ListView) v.findViewById(R.id.listView);
-
-
-
 
         File root = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
 
@@ -137,24 +140,11 @@ public class home extends Fragment {
                 File myFile2 = new File(arrayList.get(position).toString());
                 Intent target = new Intent(Intent.ACTION_VIEW);
 
-                String fname = myFile2.getName();
-                int lastIndexOf = fname.lastIndexOf(".");
-                String myftype = fname.substring(lastIndexOf + 1);
+                final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", myFile2), "audio/*");
 
-                if (myftype.contains("pdf") || myftype.contains("txt") || myftype.contains("docs")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "application/" + myftype);
-                } else if (myftype.contains("jpg") || myftype.contains("png") || myftype.contains("jpeg") || myftype.contains("gif")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "image/" + myftype);
-                } else if (myftype.contains("mp4")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "video/*");
-                }
-                else if(myftype.contains("mp3") ){
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "audio/*");
-                }
-                else {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "*/*");
-                }
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
 
                 Intent intent = Intent.createChooser(target, "Open File");
                 try {
@@ -205,24 +195,11 @@ public class home extends Fragment {
                 File myFile2 = new File(arrayList.get(position).toString());
                 Intent target = new Intent(Intent.ACTION_VIEW);
 
-                String fname = myFile2.getName();
-                int lastIndexOf = fname.lastIndexOf(".");
-                String myftype = fname.substring(lastIndexOf + 1);
 
-                if (myftype.contains("pdf") || myftype.contains("txt") || myftype.contains("docs")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "application/" + myftype);
-                } else if (myftype.contains("jpg") || myftype.contains("png") || myftype.contains("jpeg") || myftype.contains("gif")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "image/" + myftype);
-                } else if (myftype.contains("mp4")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "video/*");
-                }
-                else if(myftype.contains("mp3") ){
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "audio/*");
-                }
-                else {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "*/*");
-                }
+                final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", myFile2), "image/*");
+
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                 Intent intent = Intent.createChooser(target, "Open File");
                 try {
@@ -273,24 +250,10 @@ public class home extends Fragment {
                 File myFile2 = new File(arrayList.get(position).toString());
                 Intent target = new Intent(Intent.ACTION_VIEW);
 
-                String fname = myFile2.getName();
-                int lastIndexOf = fname.lastIndexOf(".");
-                String myftype = fname.substring(lastIndexOf + 1);
-
-                if (myftype.contains("pdf") || myftype.contains("txt") || myftype.contains("docs")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "application/" + myftype);
-                } else if (myftype.contains("jpg") || myftype.contains("png") || myftype.contains("jpeg") || myftype.contains("gif")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "image/" + myftype);
-                } else if (myftype.contains("mp4")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "video/*");
-                }
-                else if(myftype.contains("mp3") ){
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "audio/*");
-                }
-                else {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "*/*");
-                }
+                final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", myFile2), "video/*");
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
 
                 Intent intent = Intent.createChooser(target, "Open File");
                 try {
@@ -341,24 +304,9 @@ public class home extends Fragment {
                 File myFile2 = new File(arrayList.get(position).toString());
                 Intent target = new Intent(Intent.ACTION_VIEW);
 
-                String fname = myFile2.getName();
-                int lastIndexOf = fname.lastIndexOf(".");
-                String myftype = fname.substring(lastIndexOf + 1);
-
-                if (myftype.contains("pdf") || myftype.contains("txt") || myftype.contains("docs")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "application/" + myftype);
-                } else if (myftype.contains("jpg") || myftype.contains("png") || myftype.contains("jpeg") || myftype.contains("gif")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "image/" + myftype);
-                } else if (myftype.contains("mp4")) {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "video/*");
-                }
-                else if(myftype.contains("mp3") ){
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "audio/*");
-                }
-                else {
-                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile2), "*/*");
-                }
+                final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", myFile2), "application/pdf");
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
                 Intent intent = Intent.createChooser(target, "Open File");
                 try {
@@ -378,73 +326,4 @@ public class home extends Fragment {
 }
 
 
-//    void ListDir(){
-//
-//        ArrayList<File> myFiles = fetchFiles(Environment.getExternalStorageDirectory());
-//
-//        String [] items = new String[myFiles.size()];
-//        for(int i=0;i<myFiles.size();i++){
-//            items[i] = myFiles.get(i).getName();
-//
-//        }
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, items);
-//        listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//
-//
-//                File myFile = new File(myFiles.get(position).getAbsolutePath());
-//                Intent target = new Intent(Intent.ACTION_VIEW);
-//
-//                String fname = myFile.getName();
-//                int lastIndexOf = fname.lastIndexOf(".");
-//                String myftype = fname.substring(lastIndexOf+1);
-//
-//                if(myftype.contains("pdf") || myftype.contains("txt") || myftype.contains("docs")) {
-//                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile), "application/"+myftype);
-//                }
-//                else if(myftype.contains("jpg") || myftype.contains("png") || myftype.contains("jpeg") || myftype.contains("gif") ){
-//                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile), "image/"+myftype);
-//                }
-//                else if(myftype.contains("mp4") ){
-//                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile), "video/*");
-//                }
-//
-//                else{
-//                    final Intent intent1 = target.setDataAndType(Uri.fromFile(myFile), "*/*");
-//                }
-//                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-//
-//                Intent intent = Intent.createChooser(target, "Open File");
-//                try {
-//                    startActivity(intent);
-//                } catch (ActivityNotFoundException e) {
-//                    // Instruct the user to install a PDF reader here, or something
-//                }
-//
-//            }
-//        });
 
-//    }
-
-//    public ArrayList<File> fetchFiles(File file){
-//        ArrayList arrayList = new ArrayList();
-//        File [] files = file.listFiles();
-//        if(files !=null){
-//            for(File myFile: files){
-//                if(!myFile.isHidden() && myFile.isDirectory()){
-//                    arrayList.addAll(fetchFiles(myFile));
-//                }
-//                else{
-//                    if(myFile.getName().endsWith(ftype)){
-//                        arrayList.add(myFile);
-//                    }
-//                }
-//            }
-//        }
-//        return arrayList;
-//    }
-//}

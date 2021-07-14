@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -30,7 +31,12 @@ public class MainActivity extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+//        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+//        StrictMode.setVmPolicy(builder.build());
+//        builder.detectFileUriExposure();
+
         setContentView(R.layout.activity_main);
 
         tabLayout = findViewById(R.id.tab_layout);

@@ -8,11 +8,13 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -151,11 +153,15 @@ public class internal_storage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_internal_storage, container, false);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
 
 
 
         if(!isFileManagerInitialized) {
-            String rootPath = String.valueOf(Environment.getExternalStorageDirectory());
+            String rootPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+
             currentPath = rootPath;
 
 
@@ -243,22 +249,26 @@ public class internal_storage extends Fragment {
                                     String fname = files[position].getName();
                                     int lastIndexOf = fname.lastIndexOf(".");
                                     String ftype = fname.substring(lastIndexOf+1);
+//                                    Toast.makeText(getActivity(), files[position].getPath(), Toast.LENGTH_SHORT).show();
+
                                     if(ftype.contains("pdf") || ftype.contains("txt") || ftype.contains("docs")) {
-                                        final Intent intent1 = target.setDataAndType(Uri.fromFile(files[position]), "application/"+ftype);
+                                        final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", files[position]), "application/"+ftype);
                                     }
+
                                     else if(ftype.contains("jpg") || ftype.contains("png") || ftype.contains("jpeg") || ftype.contains("gif") ){
-                                        final Intent intent1 = target.setDataAndType(Uri.fromFile(files[position]), "image/"+ftype);
+                                        final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", files[position]), "image/*");
                                     }
                                     else if(ftype.contains("mp4") ){
-                                        final Intent intent1 = target.setDataAndType(Uri.fromFile(files[position]), "video/*");
+                                        final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", files[position]), "video/*");
                                     }
 									else if(ftype.contains("mp3") ){
-                                        final Intent intent1 = target.setDataAndType(Uri.fromFile(files[position]), "audio/*");
+                                        final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", files[position]), "audio/*");
                                     }
                                     else{
-                                        final Intent intent1 = target.setDataAndType(Uri.fromFile(files[position]), "*/*");
+                                        final Intent intent1 = target.setDataAndType(FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", files[position]),"*/*");
                                     }
                                     target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                    target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
 
 
@@ -267,9 +277,14 @@ public class internal_storage extends Fragment {
                                     try {
                                         startActivity(intent);
                                     } catch (ActivityNotFoundException e) {
-//                            Toast.makeText(internal_storage.this, "there is no supported app for this file", Toast.LENGTH_SHORT).show();
+
+                                        Toast.makeText(getActivity(), "there is no supported app for this file", Toast.LENGTH_SHORT).show();
 
                                     }
+
+
+
+
                                 }
                             }
                         }
